@@ -25,14 +25,14 @@ body a{
 .header_top{
 	background: #fff;
 padding:2em 1em 1.8em;
-border-top-left-radius: 3px;
+/*border-top-left-radius: 3px;
 -webkit-border-top-left-radius: 3px;
 -moz-border-top-left-radius: 3px;
 -o-border-top-left-radius: 3px;
 border-top-right-radius: 3px;
 -webkit-border-top-right-radius: 3px;
 -moz-border-top-right-radius: 3px;
--o-border-top-right-radius: 3px;
+-o-border-top-right-radius: 3px;*/
 }
 .logo{
 	margin-top: 4px;
@@ -46,6 +46,42 @@ border-top-right-radius: 3px;
 .video_title {
 	/*margin: 1% 0 1% 5%;*/
 	padding: 1% 0 1% 1%;
+}
+.video_title {
+	/*margin: 1% 0 1% 5%;*/
+	padding: 1% 0 1% 1%;
+}
+video {
+	background-image: url(<%= asset_path 'wait.gif' %>);
+	background-repeat: no-repeat;
+	background-size: 150px 150px;
+	background-position: center;
+}
+
+.playable:hover {
+	position: relative;
+	opacity: 0.8;
+}
+
+.playable .play_button {
+	display: none;
+}
+.playable:hover .play_button {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 10;
+	background-image: url(<%= asset_path 'play.jpg' %>);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 30%;
+	display: block; 
+	transition: opacity .25s ease-in-out;
+	-moz-transition: opacity .25s ease-in-out;
+	-webkit-transition: opacity .25s ease-in-out;
 }
 
 .weekly_post {
@@ -109,6 +145,99 @@ border-top-right-radius: 3px;
 	color: white;
 	/*padding: 1%;*/
 }
+
+
+/*weekly slide content*/
+
+ /* Slideshow container */
+.weekly_slide_content .slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.weekly_slide_content .prev, .weekly_slide_content .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.weekly_slide_content .next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.weekly_slide_content .prev:hover, .weekly_slide_content .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.weekly_slide_content .text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.weekly_slide_content .numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.weekly_slide_content .dot {
+  cursor:pointer;
+  height: 13px;
+  width: 13px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.weekly_slide_content .active, .weekly_slide_content .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.weekly_slide_content .fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+
+
 
 /*---social-icons-----*/
 .nav {
@@ -376,7 +505,7 @@ ul.callbacks_tabs.callbacks1_tabs {
   text-decoration: none;
   height:117px;
   width:30px;
-  background: transparent url(<%= asset_path 'arrows.png' %>) no-repeat left top;
+  /*background: transparent url(<%= asset_path 'arrows.png' %>) no-repeat left top;*/
   margin-top: -45px;
   }
 .callbacks_nav.next {
@@ -629,7 +758,8 @@ border-right: none;
 border-bottom: 1px solid #CACACA;
 background: none;
 position: relative;
-margin-bottom: 2em;
+/*margin-bottom: 2em;*/
+/*padding-bottom: 2em;*/
 float:right;
 }
 .search form input[type="text"] {
@@ -669,6 +799,7 @@ h1.m_2{
 }
 .caption1{
 	position:relative;
+	/*top: 2px;*/
 }
 ul.list_3{
 	position: absolute;
@@ -699,7 +830,7 @@ float: left;
 margin-right:4%;
 }
 p.m_3{
-	position: absolute;
+position: absolute;
 top: -30px;
 color: #fff;
 font-size: 1.1em;
@@ -732,7 +863,7 @@ text-align: center;
 .col-md-6.grid_7 {
 padding-right: 0;
 }
-.col-md-2.grid_6 {
+.col-md-4.grid_6 {
 padding: 0;
 }
 .col_1{

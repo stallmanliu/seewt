@@ -2,7 +2,7 @@
 <%= render template: "seewt/header" %>
 
 
-<script>
+<script type="text/javascript">
     $(function () {
       $("#slider").responsiveSlides({
       	auto: true,
@@ -83,49 +83,83 @@
 
 		<div class="content" style="padding: 2em;margin: 0;">
 
-			<!-- content -->
-			<div class="row" style="padding: 0 0 1em 0;margin: 0;">
-				<div class="col-md-8" style="padding: 0 0.5em 0 0;margin: 0;">
-					<!-- col1_7 -->
-					<div class="row" style="padding: 0;margin: 0;">
-						<!-- SEEWT!周刊 -->
+			<!-- weekly + hot box -->
+			<div class="box_2">
+
+				<div class="col-md-8 grid_3">
+					<div class="row_1">
 						<h1 class="m_2">SEEWT!周刊</h1>
 					</div>
-					<div class="row" style="padding: 0;margin: 0;">
-						<div class="col-md-12" style="padding: 0;margin: 0;"> 
-							<!-- col1_7_row2_col1_12 -->
-							<a href="/album/weelk_post"><img src="<%= asset_path 'weekly_post.jpg' %>" class="img-responsive" alt=""/></a>
-				  		</div>
+					<div class="row_1">
+						<div class="col-md-12 grid_4">
+							<div class="col_2">
+					    		<div class="m_5"><a href="/weekly"><img src="<%= asset_path 'weekly_post.jpg' %>" class="img-responsive" alt=""/></a></div>
+						   	    <ul class="list_4">
+					    			<li><i class="icon1"> </i><p>2,548</p></li>
+					    			<li><i class="icon2"> </i><p>215</p></li>
+					    			<!-- <li><i class="icon3"> </i><p>546</p></li> -->
+					    			<li>Rating : &nbsp;&nbsp;<p>10/28期</p></li>
+					    			<li>Release Date : &nbsp;<span class="m_4">Mar 15, 2015</span> </li>
+					    			<div class="clearfix"> </div>
+					    		</ul>
+							</div>
+
+							<div class="row_fit" style="background-color: white;font-size: 0.48em;">
+								&nbsp;
+							</div>
+
+						</div>
+
+						<div class="clearfix"> </div>
 					</div>
+
 				</div>
 
-				<div class="col-md-4" style="padding: 0 0 0 0.5em;margin: 0;">
-					<!-- col2_5 -->
-					<div class="row" style="padding: 0;margin: 0;">
-						<!-- SEEWT!周刊 -->
+
+				<div class="col-md-4 grid_6">
+
+					<div class="row_1">
 						<h1 class="m_2">最强档</h1>
+						<div class="search">
+							<form>
+								<input type="text" value="Search..." onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
+								<input type="submit" value="">
+							</form>
+						</div>
+
 					</div>
 
-					<div class="row" style="padding: 0 0 0.25em 0;margin: 0;">
-						<div class="col-md-12" style="padding: 0;margin: 0;"> 
-							<!-- col1_7_row2_col1_12 -->
-							<a href="/play/<%= @hot_vtname %>"><img src="<%= asset_path 'hot.jpg' %>" class="img-responsive" alt=""/></a>
-							<p class="top_left_caption">爸爸去哪儿第四季10/28</p>
-							<!-- <ul style="position: absolute;z-index: 2;bottom: : 0;right: 0px;list-style: none;display: inline-block;color: white;padding: 1%;">
-				    			<li><i class="icon1"> </i><p>1</p></li>
-				    			<li><i class="icon2"> </i><p>0</p></li>
-				    		</ul> -->
-				  		</div>
+					<div class="row_1">
+						<div class="col_2 col_3">
+							<div class="playable">
+								<!-- <span></span> -->
+								<a href="/play/<%= @hot_vtname %>">
+									<!-- <img class="play_button" src="<%= asset_path 'play.jpg' %>" class="img-responsive" alt=""/> -->
+									<div class="play_button"></div>
+									<img src="<%= asset_path 'hot.jpg' %>" class="img-responsive" alt=""/>
+								</a>
+							</div>
+							
+
+							<ul class="list_4">
+								<li><i class="icon1"> </i><p>2,548</p></li>
+								<li><i class="icon2"> </i><p>215</p></li>
+								<li>Rating : &nbsp;&nbsp;<p>爸爸去哪儿第四季10/28</p></li>
+								<div class="clearfix"> </div>
+							</ul>
+							
+						</div>
 					</div>
 
-					<dir class="row" style="margin: 0;padding: 0;">
+					<dir class="row col_2" style="margin: 0;padding: 0;">
 						
 						<div class="col-md-6" style="margin: 0;padding: 0;">
 
 							<div class="row" style="padding: 0.25em 0;margin: 0;">
 
-								<div class="col-md-12" style="padding: 0;margin: 0;"> 
+								<div class="col-md-12 playable" style="padding: 0;margin: 0;"> 
 									<!-- col1_7_row2_col1_12 -->
+									<div class="play_button"></div>
 									<a href="/play/<%= @hot6_vtname %>"><img src="<%= asset_path 'hot6.jpg' %>" class="img-responsive" alt=""/></a>
 									<p class="top_left_caption">一年级毕业季10/29</p>
 						  		</div>
@@ -134,12 +168,14 @@
 
 							<div class="row" style="padding: 0.25em 0 0 0;margin: 0;">
 
-								<div class="col-md-6" style="padding: 0 0.25em 0 0;margin: 0;"> 
+								<div class="col-md-6 playable" style="padding: 0 0.25em 0 0;margin: 0;"> 
+									<div class="play_button"></div>
 									<a href="/play/<%= @hot4_vtname %>"><img src="<%= asset_path 'hot4.jpg' %>" class="img-responsive" alt=""/></a>
 									<p class="bottom_left_caption">惊天魔盗团2</p>
 						  		</div>
 
-								<div class="col-md-6" style="padding: 0 0 0 0.25em;margin: 0;"> 
+								<div class="col-md-6 playable" style="padding: 0 0 0 0.25em;margin: 0;"> 
+									<div class="play_button"></div>
 									<a href="/play/<%= @hot5_vtname %>"><img src="<%= asset_path 'hot5.jpg' %>" class="img-responsive" alt=""/></a>
 									<p class="bottom_right_caption">釜山行</p>
 						  		</div>
@@ -152,12 +188,14 @@
 
 							<div class="row" style="padding: 0.25em 0;margin: 0;">
 
-								<div class="col-md-6" style="padding: 0 0 0 0.5em;margin: 0;"> 
+								<div class="col-md-6 playable" style="padding: 0 0 0 0.5em;margin: 0;"> 
+									<div class="play_button"></div>
 									<a href="/play/<%= @hot2_vtname %>"><img src="<%= asset_path 'hot2.jpg' %>" class="img-responsive" alt=""/></a>
 									<p class="bottom_right_caption">追凶者也</p>
 						  		</div>
 
-								<div class="col-md-6" style="padding: 0 0 0 0.5em;margin: 0;"> 
+								<div class="col-md-6 playable" style="padding: 0 0 0 0.5em;margin: 0;"> 
+									<div class="play_button"></div>
 									<a href="/play/<%= @hot3_vtname %>"><img src="<%= asset_path 'hot3.jpg' %>" class="img-responsive" alt=""/></a>
 									<p class="bottom_right_caption">独立日2</p>
 						  		</div>
@@ -166,8 +204,8 @@
 
 							<div class="row" style="padding: 0.25em 0 0 0;margin: 0;">
 
-								<div class="col-md-12" style="padding: 0 0 0 0.5em;margin: 0;"> 
-									<!-- col1_7_row2_col1_12 -->
+								<div class="col-md-12 playable" style="padding: 0 0 0 0.5em;margin: 0;"> 
+									<div class="play_button"></div>
 									<a href="/play/<%= @hot7_vtname %>"><img src="<%= asset_path 'hot7.jpg' %>" class="img-responsive" alt=""/></a>
 									<p class="bottom_right_caption">西部世界第一季</p>
 						  		</div>
@@ -179,281 +217,237 @@
 					</dir>
 
 					
-
 				</div>
-
+				<div class="clearfix"> </div>
 			</div>
 
-			<!-- <div class="row" style="padding: 0;margin: 0;">
-				row test
-			</div> -->
-
-			<div class="row" style="padding: 1em 0;margin: 0;">
-				<!-- row2 -->
-
-				<div class="row" style="padding: 0;margin: 0;">
-					<!-- SEEWT!周刊 -->
+			<div class="box_2" style="padding: 2em 0 0 0;margin: 0;">
+			<!-- TEST -->
+				<div class="col-md-12 grid_3">
 					<h1 class="m_2">看看</h1>
 				</div>
 
-				<div class="row" style="padding: 0 0 0.5em 0;margin: 0;">
+				<div class="col-md-12 grid_3" style="padding: 0;margin: 0;">
+
+
+
+				<!-- generate grids function -->
+				<% 
+
+				    def gen_left_col96_grid vsummaries, vdetails
+			   	%>
+			   		<div class="row" style="padding: 0;margin: 0;">
+						<div class="col-md-12" style="padding: 0;margin: 0;"> 
+							<a href="/play/<%= vsummaries.vtname %>"><img src="<%= asset_path vsummaries.vlarge_poster_url %>" class="img-responsive" alt=""/></a>
+				  		</div>
+					</div>
+
+					<div class="row" style="padding: 0;margin: 0 0 0.5em 0;background-color: white;">
+						<div class="col-md-8" style="padding: 1em;margin: 0;">
+							<h5 class="m_2"><%= vsummaries.vname %></h5>
+							<p><%= vdetails.vsummary %></p>
+				  		</div>
+						<div class="col-md-4" style="padding: 1em;margin: 0;background-color: #CF4647;"> 
+
+					   	    <ul class="list_6">
+				    			<li><%= vdetails.vdirector %></li>
+				    			<li><%= vdetails.vdate %></li>
+				    			<li><%= vdetails.vdouban_rate %></li>
+				    			<div class="clearfix"> </div>
+				    		</ul>
+
+				  		</div>
+					</div>
+
+					<div class="clearfix"> </div>
+			   	<%
+				    end
+
+				    def gen_center_col96_grid vsummaries, vdetails
+				%>
+		   			<div class="row" style="padding: 0;margin: 0;background-color: white;">
+
+
+						<div class="col-md-4" style="padding: 1em;margin: 0;background-color: #F7A541;"> 
+
+					   	    <ul class="list_6">
+				    			<li><%= vdetails.vdirector %></li>
+				    			<li><%= vdetails.vdate %></li>
+				    			<li><%= vdetails.vdouban_rate %></li>
+				    			<div class="clearfix"> </div>
+				    		</ul>
+
+				  		</div>
+
+						<div class="col-md-8" style="padding: 1em;margin: 0;">
+							<h5 class="m_2"><%= vsummaries.vname %></h5>
+							<p><%= vdetails.vsummary %></p>
+				  		</div>
+					</div>
+
+
+
+					<div class="row" style="padding: 0;margin: 0 0 0.5em 0;">
+						<div class="col-md-12" style="padding: 0;margin: 0;"> 
+							<a href="/play/<%= vsummaries.vtname %>"><img src="<%= asset_path vsummaries.vlarge_poster_url %>" class="img-responsive" alt=""/></a>
+				  		</div>
+					</div>
+
+					<div class="clearfix"> </div>
+
+			   	<%
+				    end
+
+				    def gen_right_top_col3_grid vsummaries, vdetails
+				%>
+			   		<div class="row" style="padding: 0;margin: 0 0 0.5em 0;">
+						<div class="col-md-12" style="padding: 0;margin: 0;background-color: #00B4CC"> 
+
+							<div class="row" style="padding: 0;margin: 0;">
+								<a href="/play/<%= vsummaries.vtname %>"><img src="<%= asset_path vsummaries.vlarge_poster_url %>" class="img-responsive" alt=""/></a>
+							</div>
+							<div class="row" style="padding: 1em;margin: 0;background-color: white;">
+								<p><%= vdetails.vsummary %></p>
+							</div>
+
+				  		</div>
+
+				  		<div class="clearfix"> </div>
+					</div>
+			   	<%
+				    end
+
+				    def gen_right_bottom_col3_grid vsummaries, vdetails
+				%>
+			   		<div class="row" style="padding: 0;margin: 0 0 0.5em 0;">
+						<div class="col-md-12" style="padding: 0;margin: 0;background-color: #00B4CC"> 
+
+							<div class="row" style="padding: 1em;margin: 0;background-color: white;">
+								<p><%= vdetails.vsummary %></p>
+							</div>
+
+							<div class="row" style="padding: 0;margin: 0;">
+								<a href="/play/<%= vsummaries.vtname %>"><img src="<%= asset_path vsummaries.vlarge_poster_url %>" class="img-responsive" alt=""/></a>
+							</div>
+
+							<div class="clearfix"> </div>
+
+				  		</div>
+					</div>
+			   	<%
+				    end
+ 
+				    left_col96_grids_idxes = []
+				    center_col96_grids_idxes = []
+				    right_top_col3_grids_idxes = []
+				    right_bottom_col3_grids_idxes = []
+ 
+				    @kankan_vtnames.each_index do |idx|
+
+					   case idx%4
+					   when 0
+						   left_col96_grids_idxes[idx/4] = idx
+					   when 1
+						   center_col96_grids_idxes[idx/4] = idx
+					   when 2
+						   right_top_col3_grids_idxes[idx/4] = idx
+					   when 3
+						   right_bottom_col3_grids_idxes[idx/4] = idx
+					   else
+					   	
+					   end
+				    end
+				%>
 
 					<div class="col-md-9" style="padding: 0;margin: 0;"> 
+
+						<!-- <div class="col-md-6" style="padding: 0 0.5em 0 0;margin: 0;"> --> 
+						<div class="col-md-6" style="padding: 0 0.5em 0 0;margin: 0;">
+
+							<%
+								left_col96_grids_idxes.each do |idx|
+									if nil == @kankan_vdetails[idx]
+							%>
+							   		vdetails is NULL !
+						   	<%
+									else
+										gen_left_col96_grid @kankan_vsummaries[idx], @kankan_vdetails[idx]
+									end
+								end
+							%>
+
+							<div class="clearfix"> </div>
+
+						</div>
+
+						<div class="col-md-6" style="padding: 0 0.5em 0 0;margin: 0;">
+
+							<%
+								center_col96_grids_idxes.each do |idx|
+									if nil == @kankan_vdetails[idx]
+							%>
+							   		vdetails is NULL !
+						   	<%
+									else
+										# p "@kankan_vdetails[idx]: " + @kankan_vdetails[idx].inspect
+										gen_center_col96_grid @kankan_vsummaries[idx], @kankan_vdetails[idx]
+									end
+								end
+							%>
+
+							<div class="clearfix"> </div>
+
+						</div>
+
+						<div class="clearfix"> </div>
+
+					</div>
+
+					<div class="col-md-3" style="padding: 0;margin: 0;"> 
 						<!-- col1_7_row2_col1_12 -->
 
-						
+						<%
+							right_top_col3_grids_idxes.each do |idx|
+									if nil == @kankan_vdetails[idx]
+							%>
+							   		vdetails is NULL !
+						   	<%
+									else
+										gen_right_top_col3_grid @kankan_vsummaries[idx], @kankan_vdetails[idx]
 
-						<div class="col-md-6" style="padding: 0 0.5em 0 0;margin: 0;"> 
+										if nil != @kankan_vdetails[idx + 1]
+											gen_right_bottom_col3_grid @kankan_vsummaries[idx + 1], @kankan_vdetails[idx + 1]
+										end
 
-							<div class="row" style="padding: 0;margin: 0;">
-								<div class="col-md-12" style="padding: 0;margin: 0;"> 
-									<a href="/play/<%= @kankan_vtname %>"><img src="<%= asset_path 'kankan.jpg' %>" class="img-responsive" alt=""/></a>
-						  		</div>
-							</div>
+									end
+							end
+						%>
 
-							<div class="row" style="padding: 0;margin: 0;background-color: #CF4647;">
-								<div class="col-md-8" style="padding: 1em;margin: 0;background-color: white;">
-									<!-- <h1 class="m_2"><a href="single.html">星际穿越</a></h1>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia diam in congue ullamcorper. Phasellus quis iaculis risus, vitae dictum mauris. Donec id laoreet nisi. Proin porta tempor turpis non imperdiet.
-									Nulla eros risus, aliquet non laoreet nec, accumsan sit amet tellus. Mauris vitae odio elit. Mauris tellus est, fermentum in molestie placerat, ullamcorper at [...]</p> -->
-									<h5 class="m_2">星际穿越</h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia diam in congue ullamcorper. Phasellus quis iaculis risus, vitae dictum mauris. Donec id laoreet nisi.<br>&nbsp;<br>&nbsp;</p>
-						  		</div>
-								<div class="col-md-4" style="padding: 1em;margin: 0;"> 
+						<!-- <div class="clearfix"> </div>
 
-							   	    <ul class="list_6">
-						    			<li>Administrator</li>
-						    			<li>March 1, 2015</li>
-						    			<li>Rating : &nbsp;&nbsp;9.2</li>
-						    			<div class="clearfix"> </div>
-						    		</ul>
+						<%
+							right_bottom_col3_grids_idxes.each do |idx|
+									if nil == @kankan_vdetails[idx]
+							%>
+							   		vdetails is NULL !
+						   	<%
+									else
+										gen_right_bottom_col3_grid @kankan_vsummaries[idx], @kankan_vdetails[idx]
+									end
+							end
+						%>
 
-						  		</div>
-							</div>
-
-				  		</div>
-
-				  		<div class="col-md-6" style="padding: 0 0.5em;margin: 0;"> 
-							<!-- col1_7_row2_col1_12 -->
-
-							<div class="row" style="padding: 0;margin: 0;background-color: #F7A541;">
-
-
-								<div class="col-md-4" style="padding: 1em;margin: 0;"> 
-
-							   	    <ul class="list_6">
-						    			<li>Administrator</li>
-						    			<li>March 1, 2015</li>
-						    			<li>Rating : &nbsp;&nbsp;9.2</li>
-						    			<div class="clearfix"> </div>
-						    		</ul>
-
-						  		</div>
-
-								<div class="col-md-8" style="padding: 1em;margin: 0;background-color: white;">
-									<!-- <h1 class="m_2"><a href="single.html">星际穿越</a></h1>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia diam in congue ullamcorper. Phasellus quis iaculis risus, vitae dictum mauris. Donec id laoreet nisi. Proin porta tempor turpis non imperdiet.
-									Nulla eros risus, aliquet non laoreet nec, accumsan sit amet tellus. Mauris vitae odio elit. Mauris tellus est, fermentum in molestie placerat, ullamcorper at [...]</p> -->
-									<h5 class="m_2">盗梦空间</h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia diam in congue ullamcorper. Phasellus quis iaculis risus, vitae dictum mauris. Donec id laoreet nisi.</p>
-						  		</div>
-							</div>
-
-
-
-							<div class="row" style="padding: 0;margin: 0;">
-								<div class="col-md-12" style="padding: 0;margin: 0;"> 
-									<a href="/play/<%= @kankan2_vtname %>"><img src="<%= asset_path 'kankan2.jpg' %>" class="img-responsive" alt=""/></a>
-						  		</div>
-							</div>
-
-
-				  		</div>
+						<div class="clearfix"> </div> -->
 
 			  		</div>
 
-			  		<div class="col-md-3" style="padding: 0 0 0 0.5em;margin: 0;"> 
-						<!-- col1_7_row2_col1_12 -->
-
-						<div class="row" style="padding: 0 0 0.5em 0;margin: 0;">
-							<div class="col-md-12" style="padding: 0;margin: 0;background-color: #00B4CC"> 
-
-								<div class="row" style="padding: 0;margin: 0;">
-									<a href="/play/<%= @kankan3_vtname %>"><img src="<%= asset_path 'kankan3.jpg' %>" class="img-responsive" alt=""/></a>
-								</div>
-								<!-- <div class="row" style="padding: 1em;margin: 0;">
-									<h5 class="m_2">星际穿越</h5>
-								</div> -->
-								<div class="row" style="padding: 1em;margin: 0;background-color: white;">
-									<!-- <a href="/album/hot"><img src="<%= asset_path 'kankan3.jpg' %>" class="img-responsive" alt=""/></a> -->
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-								</div>
-
-
-					  		</div>
-						</div>
-
-
-
-
-						<div class="row" style="padding: 0 0 0.5em 0;margin: 0;">
-							<div class="col-md-12" style="padding: 0;margin: 0;background-color: #00B4CC"> 
-
-
-								<div class="row" style="padding: 1em;margin: 0;background-color: #FFD;">
-									<!-- <a href="/album/hot"><img src="<%= asset_path 'kankan3.jpg' %>" class="img-responsive" alt=""/></a> -->
-									<p>Lorem ipsum dolor sit amet. </p>
-								</div>
-
-								<div class="row" style="padding: 0;margin: 0;">
-									<a href="/play/<%= @kankan3_vtname %>"><img src="<%= asset_path 'kankan3.jpg' %>" class="img-responsive" alt=""/></a>
-								</div>
-								<!-- <div class="row" style="padding: 1em;margin: 0;">
-									<h5 class="m_2">星际穿越</h5>
-								</div> -->
-
-
-					  		</div>
-						</div>
-
-			  		</div>
 				</div>
 
-
-
-
-				<div class="row" style="padding: 0 0 0.5em 0;margin: 0;">
-
-					<div class="col-md-3" style="padding: 0 0.5em 0 0;margin: 0;"> 
-						<!-- col1_7_row2_col1_12 -->
-
-						<div class="row" style="padding: 0 0 0.5em 0;margin: 0;">
-							<div class="col-md-12" style="padding: 0;margin: 0;background-color: #00B4CC"> 
-
-								<div class="row" style="padding: 0;margin: 0;">
-									<a href="/play/<%= @kankan3_vtname %>"><img src="<%= asset_path 'kankan3.jpg' %>" class="img-responsive" alt=""/></a>
-								</div>
-								<!-- <div class="row" style="padding: 1em;margin: 0;">
-									<h5 class="m_2">星际穿越</h5>
-								</div> -->
-								<div class="row" style="padding: 1em;margin: 0;background-color: white;">
-									<!-- <a href="/album/hot"><img src="<%= asset_path 'hot2.jpg' %>" class="img-responsive" alt=""/></a> -->
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-								</div>
-
-
-					  		</div>
-						</div>
-
-
-
-
-						<div class="row" style="padding: 0 0 0.5em 0;margin: 0;">
-							<div class="col-md-12" style="padding: 0;margin: 0;background-color: #00B4CC"> 
-
-
-								<div class="row" style="padding: 1em;margin: 0;background-color: #FFD;">
-									<!-- <a href="/album/hot"><img src="<%= asset_path 'hot2.jpg' %>" class="img-responsive" alt=""/></a> -->
-									<p>Lorem ipsum dolor sit amet. </p>
-								</div>
-
-								<div class="row" style="padding: 0;margin: 0;">
-									<a href="/play/<%= @kankan3_vtname %>"><img src="<%= asset_path 'kankan3.jpg' %>" class="img-responsive" alt=""/></a>
-								</div>
-								<!-- <div class="row" style="padding: 1em;margin: 0;">
-									<h5 class="m_2">星际穿越</h5>
-								</div> -->
-
-
-					  		</div>
-						</div>
-
-			  		</div>
-
-
-
-					<div class="col-md-9" style="padding: 0;margin: 0;"> 
-						<!-- col1_7_row2_col1_12 -->
-
-						
-
-						<div class="col-md-6" style="padding: 0 0.5em;margin: 0;"> 
-
-							<div class="row" style="padding: 0;margin: 0;">
-								<div class="col-md-12" style="padding: 0;margin: 0;"> 
-									<a href="/play/<%= @kankan_vtname %>"><img src="<%= asset_path 'kankan.jpg' %>" class="img-responsive" alt=""/></a>
-						  		</div>
-							</div>
-
-							<div class="row" style="padding: 0;margin: 0;background-color: #CF4647;">
-								<div class="col-md-8" style="padding: 1em;margin: 0;background-color: white;">
-									<!-- <h1 class="m_2"><a href="single.html">星际穿越</a></h1>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia diam in congue ullamcorper. Phasellus quis iaculis risus, vitae dictum mauris. Donec id laoreet nisi. Proin porta tempor turpis non imperdiet.
-									Nulla eros risus, aliquet non laoreet nec, accumsan sit amet tellus. Mauris vitae odio elit. Mauris tellus est, fermentum in molestie placerat, ullamcorper at [...]</p> -->
-									<h5 class="m_2">星际穿越</h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia diam in congue ullamcorper. Phasellus quis iaculis risus, vitae dictum mauris. Donec id laoreet nisi.</p>
-						  		</div>
-								<div class="col-md-4" style="padding: 1em;margin: 0;"> 
-
-							   	    <ul class="list_6">
-						    			<li>Administrator</li>
-						    			<li>March 1, 2015</li>
-						    			<li>Rating : &nbsp;&nbsp;9.2</li>
-						    			<div class="clearfix"> </div>
-						    		</ul>
-
-						  		</div>
-							</div>
-
-
-				  		</div>
-
-
-				  		<div class="col-md-6" style="padding: 0 0 0 0.5em;margin: 0;"> 
-							<!-- col1_7_row2_col1_12 -->
-
-							<div class="row" style="padding: 0;margin: 0;background-color: #F7A541;">
-
-
-								<div class="col-md-4" style="padding: 1em;margin: 0;"> 
-
-							   	    <ul class="list_6">
-						    			<li>Administrator</li>
-						    			<li>March 1, 2015</li>
-						    			<li>Rating : &nbsp;&nbsp;9.2</li>
-						    			<div class="clearfix"> </div>
-						    		</ul>
-
-						  		</div>
-
-								<div class="col-md-8" style="padding: 1em;margin: 0;background-color: white;">
-									<!-- <h1 class="m_2"><a href="single.html">星际穿越</a></h1>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia diam in congue ullamcorper. Phasellus quis iaculis risus, vitae dictum mauris. Donec id laoreet nisi. Proin porta tempor turpis non imperdiet.
-									Nulla eros risus, aliquet non laoreet nec, accumsan sit amet tellus. Mauris vitae odio elit. Mauris tellus est, fermentum in molestie placerat, ullamcorper at [...]</p> -->
-									<h5 class="m_2">盗梦空间</h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia diam in congue ullamcorper. Phasellus quis iaculis risus, vitae dictum mauris. Donec id laoreet nisi.</p>
-						  		</div>
-							</div>
-
-
-
-							<div class="row" style="padding: 0;margin: 0;">
-								<div class="col-md-12" style="padding: 0;margin: 0;"> 
-									<a href="/play/<%= @kankan2_vtname %>"><img src="<%= asset_path 'kankan2.jpg' %>" class="img-responsive" alt=""/></a>
-						  		</div>
-							</div>
-
-
-				  		</div>
-
-			  		</div>
-
-			  		
-				</div>
-
-				
+				<div class="clearfix"> </div>
 
 			</div>
+
+			<div class="clearfix"> </div>
 
 		</div>
 

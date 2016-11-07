@@ -25,6 +25,29 @@ class SeewtController < ApplicationController
     @hot5_vtname = "fushanxing"
     @hot6_vtname = "yinianjibiyeji_20161029"
     @hot7_vtname = "xibushijiedijiyi"
+
+    @kankan_vtnames = []
+    @kankan_vtnames[0] = "daomengkongjian"
+    @kankan_vtnames[1] = "xingjichuanyue"
+    @kankan_vtnames[2] = "jingtiandanizhuan"
+    @kankan_vtnames[3] = "xingjichuanyue"
+    @kankan_vtnames[4] = "xingjichuanyue"
+    @kankan_vtnames[5] = "xingjichuanyue"
+    @kankan_vtnames[6] = "xingjichuanyue"
+
+    @kankan_vdetails = []
+    @kankan_vsummaries = []
+    @kankan_vtnames.each_index do |idx|
+      @kankan_vdetails[idx] = VideoDetail.find_by vtname: @kankan_vtnames[idx]
+      @kankan_vsummaries[idx] = VideoSummary.find_by vtname: @kankan_vtnames[idx]
+      # p "idx:" + idx.inspect
+      # p "@kankan_vtnames[idx]:" + @kankan_vtnames[idx].inspect
+      # p "@kankan_vsummaries[idx]:" + @kankan_vsummaries[idx].inspect
+      # p "@kankan_vdetails[idx]:" + @kankan_vdetails[idx].inspect
+    end
+
+    p VideoDetail.all.inspect
+
   end
 
   def drama
@@ -37,6 +60,17 @@ class SeewtController < ApplicationController
 
   def tv_show
 
+  end
+
+  def weekly_display
+    @weekly_vtname = "duzhan"
+    @weekly2_vtname = "saodu"
+    @weekly3_vtname = "bianjingfengyun"
+  end
+
+  def playtemp
+    @temp_vurl = youtbe_parse_turl "https://www.youtube.com/watch?v=5KKTY9KLI8o"
+    p "@temp_vurl:" + @temp_vurl
   end
 
   def single
@@ -78,7 +112,7 @@ class SeewtController < ApplicationController
       @vtype = "video/mp4"
       p "@vurl: " + @vurl
       @vname = "测试"
-      
+
     when "youtube"
       #pp "youtube"
       @vurl = youtube_vid_to_url vid
@@ -151,6 +185,55 @@ class SeewtController < ApplicationController
     url = stdout.readlines[0].chomp
     #pp url
     url
+  end
+
+  def append_one_record_into_video_summaries
+
+    # t.integer :vid
+    # t.string :vtname
+    # t.string :vname
+    # t.string :vtitle
+    # t.string :vlanguage
+    # t.string :vclass
+    # t.string :vtype
+    # t.string :vweb
+    # t.string :vurl
+    # t.integer :vurl_update_time
+    # t.string :vdomain
+    # t.string :vpath
+    # t.string :vfilename
+    # t.string :vfileext
+    # t.string :vbanner_url
+    # t.string :vsmall_poster_url
+    # t.string :vmid_poster_url
+    # t.string :vlarge_poster_url
+    # t.integer :vupload_time
+
+    trecord = VideoSummary.new
+    trecord.vid = 1
+    trecord.vtname = "zhuixiongzheye"
+    trecord.vname = "追凶者也"
+    trecord.vtitle = "追凶者也"
+    trecord.vlanguage = "chinese"
+    trecord.vclass = "movie"
+    trecord.vtype = "video/mp4"
+    trecord.vweb = "baidupcs"
+    trecord.vurl = "https://pcs.baidu.com/rest/2.0/pcs/stream?method=download&access_token=23.3c473ff6aea5aafe94bfc16a2ee1cd8b.2592000.1480200057.2644256190-2293434&path=%2Fapps%2FSyncY%2Fseewhat%2Fmovies%2Fzhuixiongzheye.mp4"
+    trecord.vurl_update_time = 0
+    trecord.vdomain = "pcs.baidu.com?"
+    trecord.vpath = ".../app/..."
+    trecord.vfilename = "zhuixiongzheye"
+    trecord.vfileext = "mp4"
+    trecord.vbanner_url = "zhuixiongzheye_banner.jpg"
+    trecord.vsmall_poster_url = "zhuixiongzheye_small_poster.jpg"
+    trecord.vmid_poster_url = "zhuixiongzheye_small_poster.jpg"
+    trecord.vlarge_poster_url = "zhuixiongzheye_small_poster.jpg"
+    trecord.vupload_time = "10/31/2016"
+    trecord.vothers = ""
+
+    trecord.save
+
+
   end
 
 end

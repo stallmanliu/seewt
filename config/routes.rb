@@ -57,12 +57,18 @@ Rails.application.routes.draw do
   ####################################################
   ## seewt
   ####################################################
+  get '/playtemp', to: 'seewt#playtemp'
+
+  get '/append_record', to: 'seewt#append_one_record_into_video_summaries'
 
   get '/play/:tname', to: 'seewt#videojs_play'
 
   get '/single/:tname', to: 'seewt#single'
 
   get '/album/:tname', to: 'seewt#album'
+
+  get '/weekly', to: 'seewt#weekly_display'
+  
 
   get '/drama', to: 'seewt#drama'
   get '/movie', to: 'seewt#movie'

@@ -11,6 +11,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20161105050451) do
+
+  create_table "video_details", force: :cascade do |t|
+    t.integer  "vid"
+    t.string   "vtname"
+    t.string   "vname"
+    t.string   "vtitle"
+    t.string   "vlanguage"
+    t.string   "vcountry"
+    t.string   "vclass"
+    t.string   "vcategory"
+    t.string   "vyear"
+    t.integer  "vdate"
+    t.string   "vdirector"
+    t.string   "vactors"
+    t.string   "vsummary"
+    t.string   "vdescription"
+    t.integer  "vgood_counter"
+    t.integer  "vbad_counter"
+    t.integer  "vdownload_counter"
+    t.float    "vimdb_rate"
+    t.float    "vdouban_rate"
+    t.integer  "vduration"
+    t.string   "vsimilars"
+    t.text     "vothers"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "video_summaries", force: :cascade do |t|
+    t.integer  "vid"
+    t.string   "vtname"
+    t.string   "vname"
+    t.string   "vtitle"
+    t.string   "vlanguage"
+    t.string   "vclass"
+    t.string   "vtype"
+    t.string   "vweb"
+    t.string   "vurl"
+    t.integer  "vurl_update_time"
+    t.string   "vdomain"
+    t.string   "vpath"
+    t.string   "vfilename"
+    t.string   "vfileext"
+    t.string   "vbanner_url"
+    t.string   "vsmall_poster_url"
+    t.string   "vmid_poster_url"
+    t.string   "vlarge_poster_url"
+    t.integer  "vupload_time"
+    t.text     "vothers"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
 
 end
