@@ -45,3 +45,7 @@ group :development do
   gem 'spring'
 end
 
+
+#seewt add
+gem 'geocoder'
+

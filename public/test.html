@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
+  <title>SEEWT</title>
+</head>
+<body>
+
+<div>
+
+
+    <!-- <img src="https://api.openload.co/1/file/dlticket?file=2Uror4ytvdg&login=bb285d7b4b2d2b16&key=AlNN_XAl"></img> -->
+    <img id="captcha_png" src=""></img>
+    <!-- <form onsubmit="captcha_value()">
+      <input type="text" id="input_value"><br>
+      <input type="submit" value="submit">
+    </form> -->
+
+    <input type="text" id="input_value"/>
+    <input type="button" value="submit" onclick="captcha_value()"/>
+
+    <video id="video_1" controls>
+        <!-- <source src="https://oqt1ou.oloadcdn.net/dl/l/2PaMCxFVefLLCs5v/2Uror4ytvdg/duzhan.mp4" type='video/mp4'> -->
+        <source id="video_src" src="" type='video/mp4'>
+        <!-- <iframe src="https://api.openload.co/1/file/dlticket?file=2Uror4ytvdg&login=bb285d7b4b2d2b16&key=AlNN_XAl"></iframe> -->
+    </video>
+
+    <script type="text/javascript">
+
+        function captcha_value()
+        {
+            var value = document.getElementById("input_value").value;
+            var vurl = "https://api.openload.co/1/file/dl?file=" + fileid + "&ticket=" + ticket + "&captcha_response=" + value;
+
+            // alert("vurl: " + vurl);
+
+            client.open("GET", vurl, false);
+            client.send(null);
+
+            if (client.status == 200)
+            {
+                // var res = JSON.parse(client.responseText);
+                // var ticket = JSON.parse(client.responseText).result.ticket;
+                // alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText);
+                // alert("The ticket:\n\n" + ticket);
+                // https://api.openload.co/1/file/dl?file=2Uror4ytvdg&ticket=2Uror4ytvdg~bb285d7b4b2d2b16~1478911279~def~Cl6elajknk_DkidI~1~7K2mvwn_L8qj_bjr
+
+                // var vurl = "https://api.openload.co/1/file/dl?file=2Uror4ytvdg&ticket=" + ticket;
+
+                // alert("vurl: " + vurl);
+
+                // client.open("GET", vurl, false);
+                // client.send(null);
+
+                var video_url = JSON.parse(client.responseText).result.url;
+
+                // alert("video_url: " + video_url);
+
+                var video_src = document.getElementById("video_src");
+
+                alert("video_src: " + video_src);
+
+                video_src.src = video_url;
+
+                var child = document.getElementById("captcha_png");
+
+                // alert("parentNode: " + child.parentNode);
+
+                // alert("remove node: " + child.parentNode.removeChild(child));
+                child.src = "/";
+
+                alert("set video_src successfully: " + video_url);
+
+                
+            }
+            else
+            {
+                alert("The request did not succeed!\n\nThe response status was: " + client.status + " " + client.statusText + ".");
+            }
+        }
+
+        var fileid = "HoXi0lFkdUw";
+        var login = "bb285d7b4b2d2b16";
+        var key = "AlNN_XAl";
+        var url = "https://api.openload.co/1/file/dlticket?file=" + fileid + "&login=" + login + "&key=" + key;
+        // var representationOfDesiredState = "The cheese is old and moldy, where is the bathroom?";
+
+        var client = new XMLHttpRequest();
+        var ticket = "";
+
+        // var res = "";
+
+        client.open("GET", url, false);
+
+        // client.setRequestHeader("Content-Type", "text/plain");
+
+        // client.send(representationOfDesiredState);
+        client.send(null)
+
+        if (client.status == 200)
+        {
+            // var res = JSON.parse(client.responseText);
+            ticket = JSON.parse(client.responseText).result.ticket;
+            var captcha_url = JSON.parse(client.responseText).result.captcha_url;
+            if ( "" != captcha_url ) 
+            {
+                document.getElementById("captcha_png").src = captcha_url;
+                // alert("set img src successfully !");
+            }
+            else
+            {
+                // alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText);
+                // alert("The ticket:\n\n" + ticket);
+                // https://api.openload.co/1/file/dl?file=2Uror4ytvdg&ticket=2Uror4ytvdg~bb285d7b4b2d2b16~1478911279~def~Cl6elajknk_DkidI~1~7K2mvwn_L8qj_bjr
+
+                var vurl = "https://api.openload.co/1/file/dl?file=" + fileid + "&ticket=" + ticket;
+
+                alert("vurl: " + vurl);
+
+                client.open("GET", vurl, false);
+                client.send(null);
+
+                if (client.status == 200)
+                {
+                    // var res = JSON.parse(client.responseText);
+                    // var ticket = JSON.parse(client.responseText).result.ticket;
+                    alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText);
+                    // alert("The ticket:\n\n" + ticket);
+                    // https://api.openload.co/1/file/dl?file=2Uror4ytvdg&ticket=2Uror4ytvdg~bb285d7b4b2d2b16~1478911279~def~Cl6elajknk_DkidI~1~7K2mvwn_L8qj_bjr
+
+                    // var vurl = "https://api.openload.co/1/file/dl?file=2Uror4ytvdg&ticket=" + ticket;
+
+                    // alert("vurl: " + vurl);
+
+                    // client.open("GET", vurl, false);
+                    // client.send(null);
+
+                    var video_url = JSON.parse(client.responseText).result.url;
+
+                    document.getElementById("video_src").src = video_url;
+
+                }
+                else
+                {
+                    alert("The request did not succeed!\n\nThe response status was: " + client.status + " " + client.statusText + ".");
+                }   
+            }
+            
+        }
+        else
+        {
+            alert("The request did not succeed!\n\nThe response status was: " + client.status + " " + client.statusText + ".");
+        }
+
+        // https://api.openload.co/1/file/dl?file=2Uror4ytvdg&ticket=2Uror4ytvdg~bb285d7b4b2d2b16~1478911279~def~Cl6elajknk_DkidI~1~7K2mvwn_L8qj_bjr
+
+
+    </script>
+</div>
+
+
+</body>
+</html>

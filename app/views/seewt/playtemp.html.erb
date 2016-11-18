@@ -1,13 +1,198 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Temp Play !</title>
-<body>
+<%= render template: "seewt/header" %>
 
-<video id="video_1" controls>
-	<source src="https://r2---sn-vgpvoj5-tu1e.googlevideo.com/videoplayback?key=yt6&itag=22&mime=video%2Fmp4&upn=pAJf1WTga1A&signature=B9201DAD957699142F5D7118C9106B3C7AB11CBE.1FC46DAD664A215812A6B59B274590491FD17BD1&shardbypass=yes&ip=137.122.90.251&ratebypass=yes&hcs=yes&ei=-W8eWNOIH8TMugLcl4_IDA&source=youtube&ms=au&mv=m&mt=1478389641&dur=5906.065&requiressl=yes&id=o-AHrNScGXhqtU01g71BsyCSeo9zwBMxdkN4o8sk6xZ04T&pl=26&mn=sn-vgpvoj5-tu1e&mm=31&sparams=dur%2Cei%2Chcs%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Cshardbypass%2Csource%2Cupn%2Cexpire&expire=1478411353&ipbits=0&lmt=1478367250308332&initcwndbps=6487500" type='video/mp4'>
-</video>
 
-</body>
+<div class="container">
+	<div class="container_wrap">
+		<div class="header_top">
+		    <div class="col-sm-3 logo"><a href="/"><img src="<%= asset_path 'logo.png' %>" alt=""/></a></div>
+		    <div class="col-sm-6 nav">
+			  <ul>
+				 <li> <span class="simptip-position-bottom simptip-movable" data-tooltip="drama"><a href="drama.html"> </a></span></li>
+				 <li><span class="simptip-position-bottom simptip-movable" data-tooltip="movie"><a href="movie.html"> </a> </span></li>
+				 <li><span class="simptip-position-bottom simptip-movable" data-tooltip="tv show"><a href="tv_show.html"> </a></span></li>
+				 <!-- <li><span class="simptip-position-bottom simptip-movable" data-tooltip="game"><a href="movie.html"> </a></span></li> -->
+				 <!-- <li><span class="simptip-position-bottom simptip-movable" data-tooltip="tv"><a href="movie.html"> </a></span></li> -->
+				 <!-- <li><span class="simptip-position-bottom simptip-movable" data-tooltip="more"><a href="movie.html"> </a></span></li> -->
+			 </ul>
+			</div>
+			<div class="col-sm-3 header_right">
+			   <ul class="header_right_box">
+				 <li><img src="<%= asset_path 'p1.png' %>" alt=""/></li>
+				 <li><p><a href="login.html">Carol Varois</a></p></li>
+				 <!-- <li class="last"><i class="edit"> </i></li> -->
+				 <div class="clearfix"> </div>
+			   </ul>
+			</div>
+			<div class="clearfix"> </div>
+	    </div>
+	    <div class="content">
+      	    <div class="movie_top">
+      	        <div class="col-md-10 col-md-offset-1 movie_box">
+                    <div class="grid">
 
-</html>
+                    	<!-- <div class="play_cover">
+                    		<div class="play_button"></div>
+                    		<img src="<%= asset_path 'play.jpg' %>">
+                    	</div> -->
+
+                    	<div class = "video_content play_cover">
+
+                    		<div class="play_button" onclick="play_video()"></div>
+
+						  	<div class="captcha_block">
+						  		<img id="captcha_img" class="grid_block" src=""></img>
+							    <!-- <form onsubmit="submit_captcha_value()">
+							      <input type="text" id="input_value"><br>
+							      <input type="submit" value="submit">
+							    </form> -->
+
+							    <input type="text" id="input_value" class="grid_block"/>
+							    <div class="grid_block">
+								    <input type="button" value="refresh" onclick="refresh_captcha_value()"/>
+								    <input type="button" value="submit" onclick="submit_captcha_value()"/>
+							    </div>
+							    <div class="clearfix"> </div>
+						  	</div>
+
+							<video id="video_0" class="video-js vjs-default-skin vjs-16-9 vjs-big-play-centered" controls autoplay preload="auto" data-setup="{}">
+								<source src="" type="video/mp4">
+								<p class="vjs-no-js">
+								  To view this video please enable JavaScript, and consider upgrading to a web browser that
+								  <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+								</p>
+							</video>
+							
+						</div>
+
+						<div class="video_script">
+							<script src="<%= @vjs_cdn_url %>"></script>
+							<!-- <script src="<%= @vjs_hls_cdn_url %>"></script> -->
+							<!-- <script type="text/javascript">
+								var vjs_player = videojs( "video_0", {}, function(){
+									var encoded = "<%= @vurl %>";
+									var decode = encoded.replace(/&amp;/g, '&');
+									var v_src = [{ type: "<%= @vtype %>", src: decode }];
+									// var v_src = [{ type: "video/mp4", src: "test.m3u8" }];
+									// alert("v_src: " + v_src[0]["src"])
+									this.src(v_src);
+									this.load();
+									this.play();
+								});
+							</script> -->
+							<script type="text/javascript">
+
+								function updateBufPerct()
+								{
+									// var perct_buf = vjs_player.bufferedPercent();
+									// alert("bufferedPercent: " + perct_buf);
+									load_bar.update();
+								}
+
+								function load_openload_video()
+								{
+									var video_req_url = "https://api.openload.co/1/file/dl?file=" + fileid + "&ticket=" + ticket + captcha_response;
+
+						            client.open("GET", video_req_url, false);
+						            client.send(null);
+
+						            if (client.status == 200)
+						            {
+						            	// var parent_node = document.getElementById("captcha_png").parentNode;
+						            	// parent_node.parentNode.removeChild(parent_node);
+
+						                var video_url = JSON.parse(client.responseText).result.url;
+						                var video_src = [{ type: "video/mp4", src: video_url }];
+						                vjs_player.src(video_src);
+										vjs_player.load();
+										vjs_player.play();
+										// alert("got video_url: " + video_url);
+						            }
+						            else
+						            {
+						                alert("The request did not succeed!\n\nThe response status was: " + client.status + " " + client.statusText + ".");
+						            }
+								}
+
+								function submit_captcha_value()
+						        {
+						        	captcha_response = "&captcha_response=" + document.getElementById("input_value").value;
+						        	document.getElementById("captcha_img").parentNode.style.display = "none";
+						        	load_openload_video();
+						        }
+
+								function refresh_captcha_value()
+						        {
+						        	request_ticket();
+						        }
+
+						        function request_ticket()
+						        {
+						        	client.open("GET", ticket_req_url, false);
+							        client.send(null)
+
+							        if (client.status == 200)
+							        {
+							            ticket = JSON.parse(client.responseText).result.ticket;
+							            var captcha_url = JSON.parse(client.responseText).result.captcha_url;
+							            // captcha_url = "https://c22blog.files.wordpress.com/2010/10/input-black.gif";
+							            if ( "" != captcha_url ) 
+							            {	
+							            	var captcha_img = document.getElementById("captcha_img");
+							            	captcha_img.src = captcha_url;
+							            	captcha_img.parentNode.style.display = "block";
+							                // alert("set img src successfully !");
+							            }
+							            else
+							            {
+							            	document.getElementById("captcha_img").parentNode.style.display = "none";
+							                load_openload_video();  
+							            }
+							            
+							        }
+							        else
+							        {
+							            alert("The request did not succeed!\n\nThe response status was: " + client.status + " " + client.statusText + ".");
+							        }
+						        }
+
+						        function play_video()
+						        {
+						        	request_ticket();
+
+						        	var child = document.getElementsByClassName("play_button")[0];
+						        	child.parentNode.removeChild(child);
+						        }
+
+								var vjs_player = videojs( "video_0" );
+
+								// openload params
+						        var fileid = "OhS2U0ESU-s";
+						        var login = "bb285d7b4b2d2b16";
+						        var key = "AlNN_XAl";
+						        var ticket_req_url = "https://api.openload.co/1/file/dlticket?file=" + fileid + "&login=" + login + "&key=" + key;
+						        // var representationOfDesiredState = "The cheese is old and moldy, where is the bathroom?";
+
+						        var client = new XMLHttpRequest();
+						        var ticket = "";
+						        var captcha_response = "";
+
+						        // request_ticket();
+						        // document.getElementByClass("video_cover")[0].style = captcha_url;
+						        // vjs_player.stop();
+
+							</script>
+						</div>
+					  	<!-- <div class="clearfix"> </div> -->
+					  	
+                    </div>
+                    <div class="clearfix"> </div>
+                    <p class="m_4">This a pure entertainment website to watch video ! See what ? Enjoy recommended dramas, movies, tv shows ! This is a beta version of SEEWT!. Daily update. Weekly recommend. Monthly summary.</p>
+	            </div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+    </div>
+</div>
+
+
+<%= render template: "seewt/footer" %>

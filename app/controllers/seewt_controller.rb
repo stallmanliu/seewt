@@ -1,5 +1,7 @@
 
+require "open-uri"
 require "open3"
+require "pp"
 
 
 class SeewtController < ApplicationController
@@ -18,7 +20,7 @@ class SeewtController < ApplicationController
     @banner1_vtname = "zhenzhengnanzihan_20161028"
     @banner2_vtname = "dulirier_juantuchonglai"
 
-    @hot_vtname = "babaqunaersi_20161028"
+    @hot_vtname = "babaqunaerdisiji_20161028"
     @hot2_vtname = "zhuixiongzheye"
     @hot3_vtname = "dulirier_juantuchonglai"
     @hot4_vtname = "jingtianmodaotuaner"
@@ -69,8 +71,10 @@ class SeewtController < ApplicationController
   end
 
   def playtemp
-    @temp_vurl = youtbe_parse_turl "https://www.youtube.com/watch?v=5KKTY9KLI8o"
-    p "@temp_vurl:" + @temp_vurl
+    # @temp_vurl = youtbe_parse_turl "https://www.youtube.com/watch?v=5KKTY9KLI8o"
+    # p "@temp_vurl:" + @temp_vurl
+    @url = test_http "https://api.openload.co/1/file/dlticket?file=2Uror4ytvdg&login=bb285d7b4b2d2b16&key=AlNN_XAl"
+    p "@url: " + @url
   end
 
   def single
@@ -83,6 +87,22 @@ class SeewtController < ApplicationController
 
   def videojs_play
 
+    # p "request.location.inspect: " + request.location.address.inspect
+    # p "request.location.inspect: " + request.location.city.inspect
+    # p "request.location.inspect: " + request.location.country.inspect
+    # p "request.location.inspect: " + request.location.country_code.inspect
+    # p "request.location.inspect: " + request.location.state.inspect
+    # p "request.location.inspect: " + request.location.state_code.inspect
+
+    @country_code = request.location.country_code
+
+    # url = URI.parse("https://www.youtube.com/watch?v=7J0fRj04s8U")
+    # req = Net::HTTP.new(url.host, url.port)
+    # req.use_ssl = true
+    # res = req.request_head(url.path)
+    # p "res.code: " + res.code.inspect
+    # "success: 200"
+
     tname = params[:tname]
 
     # p "tname@videojs_play: " + tname 
@@ -90,13 +110,119 @@ class SeewtController < ApplicationController
     @vjs_cdn_url = "http://vjs.zencdn.net/5.11.9/video.js"
     @vjshls_cdn_url = "https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/3.6.6/videojs-contrib-hls.min.js"
 
-    @vname = ""
+    # @vname = ""
     @vurl = ""
-    @vtype = ""
+    # @vtype = ""
+
+    @vsummary = VideoSummary.find_by vtname: tname
+    @vdetail = VideoDetail.find_by vtname: tname
+
+    if "CN" == @country_code
+      # use baidupcs
+      @vurl = bdpcs_parse_vurl tname
+    else
+      
+      # use youtube, baidupcs backup
+
+      @vurl = youtube_parse_vurl @vsummary.vurl
+      # @vurl = youtube_parse_vurl "https://www.youtube.com/watch?v=7J0fRj04s8U"
+
+      if "" == @vurl
+        @vurl = bdpcs_parse_vurl tname
+      end
+
+    end
+
+    # if nil != @vsummary
+    #   case @vsummary.vweb
+    #   when "baidupcs"
+    #     @vurl = bdpcs_parse_vurl tname
+    #   when "youtube"
+    #     @vurl = youtube_parese_vurl tname
+    #   else
+
+    #   end
+    # end
 
     #parese temp video name, get real video name, real video type, real video url
-    parse_video_tname(tname)
+    #parse_video_tname(tname)
 
+    # p "@vurl: " + @vurl
+    # p "@vsummary: " + @vsummary.inspect
+    # p "@vdetail: " + @vdetail.inspect
+
+  end
+
+  def test_http turl
+    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"
+    # html = open(turl, "User-Agent" => user_agent)  
+    # pp html 
+    # doc = Nokogiri::HTML(html)
+    # #pp doc.inner_html.class
+    # File.open("/opt/ISSC/gotp.html","w") { |f|
+    #   doc.inner_html.each_line { |line|
+    #     f.puts line
+    #   }
+    # }
+    # url = doc.css("#html5-player")[0].attribute("src").value
+
+    # res = Net::HTTP.get URI("https://api.openload.co/1/file/dlticket?file=2Uror4ytvdg&login=bb285d7b4b2d2b16&key=AlNN_XAl")
+    # p "res: " + res
+    # res_hash = JSON.parse res
+    # pp res_hash
+    # ticket = res_hash["result"]["ticket"]
+    # req = "https://api.openload.co/1/file/dl?file=2Uror4ytvdg&ticket=" + ticket
+    # p "req: " + req
+    # url_res = Net::HTTP.get URI(req)
+    # url_hash = JSON.parse url_res
+    # pp res_hash
+    # url = url_hash["result"]["url"]
+    # p "url: " + url
+    # "https://api.openload.co/1/file/dl?file=2Uror4ytvdg&ticket=2Uror4ytvdg~bb285d7b4b2d2b16~1478911279~def~Cl6elajknk_DkidI~1~7K2mvwn_L8qj_bjr"
+    # url
+
+    @vjs_cdn_url = "http://vjs.zencdn.net/5.11.9/video.js"
+    @vjshls_cdn_url = "https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-hls/3.6.6/videojs-contrib-hls.min.js"
+
+  end
+
+  def check_url_available turl
+    # false == test "https://www.youtube.com/watch?v=7J0fRj04s8U" LaoPaoEr
+    url = URI.parse(turl)
+    req = Net::HTTP.new(url.host, url.port)
+    if turl.start_with? "https"
+      req.use_ssl = true
+    end
+    res = req.request_head(url.path)
+    p "check_url_available result: " + res.code.inspect
+    url_availabe = false
+    if "200" == res.code
+      url_availabe = true
+    end
+
+    url_availabe
+  end
+
+  def bdpcs_parse_vurl tname
+    bdpcs = "https://pcs.baidu.com/rest/2.0/pcs/stream?method=download&"
+    bd_access_token = "access_token=23.3c473ff6aea5aafe94bfc16a2ee1cd8b.2592000.1480200057.2644256190-2293434&"
+    bd_vpath = "path=%2Fapps%2FSyncY%2Fseewhat%2F" + @vsummary.vclass + "%2F"
+    bd_vpath = bd_vpath + tname + "." + @vsummary.vfileext
+    # @vtype = "video/mp4"
+    url = bdpcs + bd_access_token + bd_vpath
+    # p "@vurl: " + @vurl
+    # @vname = "测试"
+  end
+
+  def youtube_parse_vurl turl, options=""
+    stdin, stdout, stderr = Open3.popen3("/usr/local/bin/youtube-dl -g #{turl} #{options}")
+    tstring = stdout.readlines[0]
+    # p "tstring: "+ tstring.inspect
+    url = ""
+    if nil != tstring
+      url = tstring.chomp
+    end
+    url
   end
 
   def parse_video_tname(tname)
